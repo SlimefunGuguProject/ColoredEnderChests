@@ -26,7 +26,7 @@ public class ColoredEnderChest extends SlimefunItem {
 
     public ColoredEnderChest(ColoredEnderChests plugin, int size, int c1, int c2, int c3) {
         // @formatter:off
-        super(plugin.itemGroup, new SlimefunItemStack("COLORED_ENDER_CHEST_" + (size == 27 ? "SMALL" : "BIG") + "_" + c1 + "_" + c2 + "_" + c3, Material.ENDER_CHEST, "&eColored Ender Chest &7(" + (size == 27 ? "Small" : "Big") + ")", "", "&7Size: &e" + size, "", "&7- " + plugin.colors.get(c1), "&7- " + plugin.colors.get(c2), "&7- "
+        super(plugin.itemGroup, new SlimefunItemStack("COLORED_ENDER_CHEST_" + (size == 27 ? "SMALL" : "BIG") + "_" + c1 + "_" + c2 + "_" + c3, Material.ENDER_CHEST, "&e彩色末影箱 &7(" + (size == 27 ? "小" : "大") + ")", "", "&7大小: &e" + size, "", "&7- " + plugin.colors.get(c1), "&7- " + plugin.colors.get(c2), "&7- "
                 + plugin.colors.get(c3)), RecipeType.ANCIENT_ALTAR,
                 (size == 27) ? new ItemStack[] { 
                         new ItemStack(ColoredMaterial.WOOL.get(c1)), new ItemStack(ColoredMaterial.WOOL.get(c2)), new ItemStack(ColoredMaterial.WOOL.get(c3)), 
@@ -45,7 +45,7 @@ public class ColoredEnderChest extends SlimefunItem {
         addItemHandler(onBlockBreak());
         addItemHandler(onBlockPlace(c1, c2, c3));
 
-        new BlockMenuPreset(getId(), "&eEnder Chest", true) {
+        new BlockMenuPreset(getId(), "&e末影箱", true) {
 
             @Override
             public void init() {

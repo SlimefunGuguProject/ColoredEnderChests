@@ -1,5 +1,6 @@
 package io.github.thebusybiscuit.coloredenderchests;
 
+import io.github.thebusybiscuit.slimefun4.utils.ColoredMaterial;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -8,8 +9,6 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.EulerAngle;
-
-import io.github.thebusybiscuit.slimefun4.utils.ColoredMaterial;
 
 final class ColorIndicator {
 
