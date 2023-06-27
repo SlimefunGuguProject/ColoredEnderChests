@@ -45,7 +45,7 @@ public class ColoredEnderChest extends SlimefunItem {
         addItemHandler(onBlockBreak());
         addItemHandler(onBlockPlace(c1, c2, c3));
 
-        new BlockMenuPreset(getId(), "&e末影箱", true) {
+        new BlockMenuPreset(getId(), "&e末影箱") {
 
             @Override
             public void init() {
