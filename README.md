@@ -7,15 +7,9 @@ ColoredEnderChests 是一个 Slimefun4 附属插件。
 
 ## 下载 ColoredEnderChests
 
-你可以在这里下载ColoredEnderChests: [下载ColoredEnderChests](https://builds.guizhanss.net/ybw0014/ColoredEnderChests-CN/master)
-
 <p align="center">
-  <a href="https://github.com/ybw0014/ColoredEnderChests-CN/actions/workflows/maven.yml">
-    <img src="https://github.com/ybw0014/ColoredEnderChests-CN/actions/workflows/maven.yml/badge.svg" alt="Java CI"/>
-  </a>
-
-  <a href="https://builds.guizhanss.net/ybw0014/ColoredEnderChests-CN/master">
-    <img src="https://builds.guizhanss.net/f/ybw0014/ColoredEnderChests-CN/master/badge.svg" alt="Build status"/>
+  <a href="https://builds.guizhanss.com/SlimefunGuguProject/ColoredEnderChests/master">
+    <img src="https://builds.guizhanss.com/f/SlimefunGuguProject/ColoredEnderChests/master/badge.svg" alt="Build status"/>
   </a>
 </p>
 
@@ -31,4 +25,5 @@ ColoredEnderChests 是一个 Slimefun4 附属插件。
 </p>
 
 ## 开源
+
 本项目以[MIT协议](/LICENSE)开源。

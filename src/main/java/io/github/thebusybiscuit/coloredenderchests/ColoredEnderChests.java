@@ -5,16 +5,18 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.GitHubBuildsUpdater;
-import net.guizhanss.minecraft.chineselib.minecraft.DyeColors;
+import net.guizhanss.guizhanlib.minecraft.helper.DyeColorHelper;
+import net.guizhanss.guizhanlibplugin.updater.GuizhanUpdater;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.ChatColor;
+import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
 
 public class ColoredEnderChests extends JavaPlugin implements SlimefunAddon {
 
@@ -24,14 +26,21 @@ public class ColoredEnderChests extends JavaPlugin implements SlimefunAddon {
 
     @Override
     public void onEnable() {
+        if (!getServer().getPluginManager().isPluginEnabled("GuizhanLibPlugin")) {
+            getLogger().log(Level.SEVERE, "本插件需要 鬼斩前置库插件(GuizhanLibPlugin) 才能运行!");
+            getLogger().log(Level.SEVERE, "从此处下载: https://50L.cc/gzlib");
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
+
         cfg = new Config(this);
 
         // Setting up bStats
         new Metrics(this, 4907);
 
         // Setting up the Auto-Updater
-        if (cfg.getBoolean("options.auto-update") && getDescription().getVersion().startsWith("DEV - ")) {
-            new GitHubBuildsUpdater(this, getFile(), "ybw0014/ColoredEnderChests-CN/master").start();
+        if (cfg.getBoolean("options.auto-update") && getDescription().getVersion().startsWith("Build")) {
+            GuizhanUpdater.start(this, getFile(), "SlimefunGuguProject", "ColoredEnderChests", "master");
         }
 
         Research enderChestsResearch = new Research(new NamespacedKey(this, "colored_enderchests"), 2610, "彩色末影箱", 20);
@@ -40,22 +49,22 @@ public class ColoredEnderChests extends JavaPlugin implements SlimefunAddon {
         enderChestsResearch.register();
         bigEnderChestsResearch.register();
 
-        colors.put(0, ChatColor.WHITE + DyeColors.WHITE.toString());
-        colors.put(1, ChatColor.GOLD + DyeColors.ORANGE.toString());
-        colors.put(2, ChatColor.LIGHT_PURPLE + DyeColors.MAGENTA.toString());
-        colors.put(3, ChatColor.AQUA + DyeColors.LIGHT_BLUE.toString());
-        colors.put(4, ChatColor.YELLOW + DyeColors.YELLOW.toString());
-        colors.put(5, ChatColor.GREEN + DyeColors.LIME.toString());
-        colors.put(6, ChatColor.LIGHT_PURPLE + DyeColors.PINK.toString());
-        colors.put(7, ChatColor.DARK_GRAY + DyeColors.GRAY.toString());
-        colors.put(8, ChatColor.GRAY + DyeColors.LIGHT_GRAY.toString());
-        colors.put(9, ChatColor.DARK_AQUA + DyeColors.CYAN.toString());
-        colors.put(10, ChatColor.DARK_PURPLE + DyeColors.PURPLE.toString());
-        colors.put(11, ChatColor.BLUE + DyeColors.BLUE.toString());
-        colors.put(12, ChatColor.GOLD + DyeColors.BROWN.toString());
-        colors.put(13, ChatColor.DARK_GREEN + DyeColors.GREEN.toString());
-        colors.put(14, ChatColor.RED + DyeColors.RED.toString());
-        colors.put(15, ChatColor.BLACK + DyeColors.BLACK.toString());
+        colors.put(0, ChatColor.WHITE + DyeColorHelper.getName(DyeColor.WHITE));
+        colors.put(1, ChatColor.GOLD + DyeColorHelper.getName(DyeColor.ORANGE));
+        colors.put(2, ChatColor.LIGHT_PURPLE + DyeColorHelper.getName(DyeColor.MAGENTA));
+        colors.put(3, ChatColor.AQUA + DyeColorHelper.getName(DyeColor.LIGHT_BLUE));
+        colors.put(4, ChatColor.YELLOW + DyeColorHelper.getName(DyeColor.YELLOW));
+        colors.put(5, ChatColor.GREEN + DyeColorHelper.getName(DyeColor.LIME));
+        colors.put(6, ChatColor.LIGHT_PURPLE + DyeColorHelper.getName(DyeColor.PINK));
+        colors.put(7, ChatColor.DARK_GRAY + DyeColorHelper.getName(DyeColor.GRAY));
+        colors.put(8, ChatColor.GRAY + DyeColorHelper.getName(DyeColor.LIGHT_GRAY));
+        colors.put(9, ChatColor.DARK_AQUA + DyeColorHelper.getName(DyeColor.CYAN));
+        colors.put(10, ChatColor.DARK_PURPLE + DyeColorHelper.getName(DyeColor.PURPLE));
+        colors.put(11, ChatColor.BLUE + DyeColorHelper.getName(DyeColor.BLUE));
+        colors.put(12, ChatColor.GOLD + DyeColorHelper.getName(DyeColor.BROWN));
+        colors.put(13, ChatColor.DARK_GREEN + DyeColorHelper.getName(DyeColor.GREEN));
+        colors.put(14, ChatColor.RED + DyeColorHelper.getName(DyeColor.RED));
+        colors.put(15, ChatColor.BLACK + DyeColorHelper.getName(DyeColor.BLACK));
 
         itemGroup = new ItemGroup(new NamespacedKey(this, "colored_enderchests"), new CustomItemStack(Material.ENDER_CHEST, "&5彩色末影箱"), 2);
 
@@ -90,6 +99,6 @@ public class ColoredEnderChests extends JavaPlugin implements SlimefunAddon {
 
     @Override
     public String getBugTrackerURL() {
-        return "https://github.com/ybw0014/ColoredEnderChests-CN/issues";
+        return "https://github.com/SlimefunGuguProject/ColoredEnderChests/issues";
     }
 }

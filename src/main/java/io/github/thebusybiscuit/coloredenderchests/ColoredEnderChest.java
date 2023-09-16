@@ -2,6 +2,7 @@ package io.github.thebusybiscuit.coloredenderchests;
 
 import java.util.stream.IntStream;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
@@ -18,7 +19,6 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.handlers.SimpleBlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.utils.ColoredMaterial;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 
@@ -62,7 +62,7 @@ public class ColoredEnderChest extends SlimefunItem {
 
             @Override
             public boolean canOpen(Block b, Player p) {
-                String data = BlockStorage.getLocationInfo(b.getLocation(), "yaw");
+                String data = StorageCacheUtils.getData(b.getLocation(), "yaw");
                 int yaw = 0;
 
                 if (data != null) {
@@ -87,7 +87,7 @@ public class ColoredEnderChest extends SlimefunItem {
                             break;
                     }
 
-                    BlockStorage.addBlockInfo(b, "yaw", String.valueOf(yaw));
+                    StorageCacheUtils.setData(b.getLocation(), "yaw", String.valueOf(yaw));
                 }
 
                 ColorIndicator.updateIndicator(b, c1, c2, c3, yaw + 45);
@@ -132,7 +132,7 @@ public class ColoredEnderChest extends SlimefunItem {
                         break;
                 }
 
-                BlockStorage.addBlockInfo(e.getBlock(), "yaw", String.valueOf(yaw));
+                StorageCacheUtils.setData(e.getBlock().getLocation(), "yaw", String.valueOf(yaw));
                 ColorIndicator.updateIndicator(e.getBlock(), c1, c2, c3, yaw + 45);
             }
         };

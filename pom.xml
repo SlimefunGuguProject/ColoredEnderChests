@@ -69,10 +69,6 @@
                             <pattern>org.bstats</pattern>
                             <shadedPattern>io.github.thebusybiscuit.coloredenderchests.bstats</shadedPattern>
                         </relocation>
-                        <relocation>
-                            <pattern>net.guizhanss.minecraft.chineselib</pattern>
-                            <shadedPattern>io.github.thebusybiscuit.coloredenderchests.chineselib</shadedPattern>
-                        </relocation>
                     </relocations>
 
                     <!-- Exclude unneeded metadata files from shaded dependencies -->
@@ -127,10 +123,10 @@
         </dependency>
 
         <dependency>
-            <groupId>com.github.ybw0014</groupId>
-            <artifactId>ChineseLib</artifactId>
-            <version>0.2.4</version>
-            <scope>compile</scope>
+            <groupId>net.guizhanss</groupId>
+            <artifactId>GuizhanLibPlugin</artifactId>
+            <version>1.3.4</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>
