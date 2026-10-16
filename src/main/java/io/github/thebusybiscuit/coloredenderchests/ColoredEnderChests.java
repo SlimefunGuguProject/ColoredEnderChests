@@ -5,8 +5,8 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
-import net.guizhanss.guizhanlib.minecraft.helper.DyeColorHelper;
-import net.guizhanss.guizhanlibplugin.updater.GuizhanUpdater;
+import net.guizhanss.minecraft.guizhanlib.gugu.minecraft.helpers.DyeColorHelper;
+import net.guizhanss.minecraft.guizhanlib.updater.GuizhanUpdater;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
@@ -26,6 +26,7 @@ public class ColoredEnderChests extends JavaPlugin implements SlimefunAddon {
 
     @Override
     public void onEnable() {
+        SharedInventories.initialize(this);
         if (!getServer().getPluginManager().isPluginEnabled("GuizhanLibPlugin")) {
             getLogger().log(Level.SEVERE, "本插件需要 鬼斩前置库插件(GuizhanLibPlugin) 才能运行!");
             getLogger().log(Level.SEVERE, "从此处下载: https://50L.cc/gzlib");
@@ -76,6 +77,11 @@ public class ColoredEnderChests extends JavaPlugin implements SlimefunAddon {
             }
         }
 
+    }
+
+    @Override
+    public void onDisable() {
+        SharedInventories.flushAll();
     }
 
     private void registerEnderChest(Research smallResearch, Research bigResearch, final int c1, final int c2, final int c3) {
