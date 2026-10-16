@@ -1,12 +1,9 @@
 package io.github.thebusybiscuit.coloredenderchests;
 
-import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
-import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
-import io.github.thebusybiscuit.slimefun4.api.researches.Research;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
-import net.guizhanss.minecraft.guizhanlib.gugu.minecraft.helpers.DyeColorHelper;
-import net.guizhanss.minecraft.guizhanlib.updater.GuizhanUpdater;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+
 import org.bstats.bukkit.Metrics;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
@@ -14,10 +11,15 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
+import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.researches.Research;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+import net.guizhanss.minecraft.guizhanlib.gugu.minecraft.helpers.DyeColorHelper;
+import net.guizhanss.minecraft.guizhanlib.updater.GuizhanUpdater;
 
+@SuppressWarnings("deprecation")
 public class ColoredEnderChests extends JavaPlugin implements SlimefunAddon {
 
     protected Config cfg;
@@ -26,7 +28,6 @@ public class ColoredEnderChests extends JavaPlugin implements SlimefunAddon {
 
     @Override
     public void onEnable() {
-        SharedInventories.initialize(this);
         if (!getServer().getPluginManager().isPluginEnabled("GuizhanLibPlugin")) {
             getLogger().log(Level.SEVERE, "本插件需要 鬼斩前置库插件(GuizhanLibPlugin) 才能运行!");
             getLogger().log(Level.SEVERE, "从此处下载: https://50L.cc/gzlib");
@@ -35,6 +36,11 @@ public class ColoredEnderChests extends JavaPlugin implements SlimefunAddon {
         }
 
         cfg = new Config(this);
+
+        int interval = cfg.getInt("autosave-interval");
+        if (interval <= 0) interval = 10;
+        interval = Math.max(1, Math.min(120, interval));
+        SharedInventories.initialize(this, interval);
 
         // Setting up bStats
         new Metrics(this, 4907);

@@ -30,14 +30,14 @@ public final class SharedInventories {
 
     private SharedInventories() {}
 
-    public static void initialize(Plugin plugin) {
+    public static void initialize(Plugin plugin, int intervalSeconds) {
         Bukkit.getPluginManager().registerEvents(new Listener() {
             @EventHandler
             public void onInventoryClose(InventoryCloseEvent event) {
                 if (event.getInventory().getHolder() instanceof SharedHolder holder) save(holder.cached);
             }
         }, plugin);
-        Bukkit.getScheduler().runTaskTimer(plugin, () -> INVENTORIES.values().forEach(SharedInventories::save), 200L, 200L);
+        Bukkit.getScheduler().runTaskTimer(plugin, () -> INVENTORIES.values().forEach(SharedInventories::save), 20L * intervalSeconds, 20L * intervalSeconds);
     }
 
     public static void register(String sfId, Location loc) {

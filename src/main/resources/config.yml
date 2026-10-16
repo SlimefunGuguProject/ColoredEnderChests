@@ -1,5 +1,8 @@
 small_chests: true
 big_chests: true
 
+# 自动保存间隔（秒），范围 1~120，默认 10
+autosave-interval: 10
+
 options:
   auto-update: true

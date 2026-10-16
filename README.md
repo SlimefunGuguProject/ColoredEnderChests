@@ -7,11 +7,7 @@ ColoredEnderChests 是一个 Slimefun4 附属插件。
 
 ## 下载 ColoredEnderChests
 
-<p align="center">
-  <a href="https://builds.guizhanss.com/SlimefunGuguProject/ColoredEnderChests/master">
-    <img src="https://builds.guizhanss.com/f/SlimefunGuguProject/ColoredEnderChests/master/badge.svg" alt="Build status"/>
-  </a>
-</p>
+[点击下载](https://resources.guizhanss.com/plugin/ColoredEnderChests#download)
 
 ## Discord
 

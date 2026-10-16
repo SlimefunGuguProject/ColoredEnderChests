@@ -1,7 +1,7 @@
 version: "1"
 rules:
   - base: master
-    upstream: TheBusyBiscuit:master
+    upstream: Slimefun-Addon-Community:master
     mergeMethod: merge
     assignees:
       - ybw0014
