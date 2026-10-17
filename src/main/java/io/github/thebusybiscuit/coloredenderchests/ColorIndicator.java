@@ -70,11 +70,15 @@ final class ColorIndicator {
         return item != null && item.getType().name().endsWith("_WOOL");
     }
 
-    /** pre-display armor stands created by this plugin: invisible small marker with arms, holding wool, at the chest. */
+    /**
+     * pre-display armor stands created by this plugin: small, arms, no base plate, holding wool.
+     * legacy stands render their item to the stand's side (hand offset), so the entity can sit up
+     * to ~1 block off-center; limit wool-in-hand matching to a 1.5-block radius.
+     */
     private static boolean isLegacyMarker(ArmorStand as, Location center) {
-        return as.isSmall() && !as.isVisible() && as.isMarker() && as.hasArms()
+        return as.isSmall() && as.hasArms() && !as.hasBasePlate()
             && as.getCustomName() == null
-            && center.distanceSquared(as.getLocation()) < 0.25D
+            && center.distanceSquared(as.getLocation()) < 2.25D
             && as.getEquipment().getItemInMainHand().getType().name().endsWith("WOOL");
     }
 
